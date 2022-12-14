@@ -1,7 +1,6 @@
 import { FC } from "react";
-
-import { Box } from "@mui/material";
 import Head from "next/head";
+import { Box } from "@mui/material";
 import { Navbar, Sidebar } from "../components/ui";
 
 interface Props {
@@ -15,6 +14,7 @@ export const MainLayout: FC<Props> = ({
 }) => {
   return (
     <Box
+      component={"section"}
       sx={{
         flexGrow: 1,
       }}
@@ -22,10 +22,8 @@ export const MainLayout: FC<Props> = ({
       <Head>
         <title>{title}</title>
       </Head>
-
       <Navbar />
       <Sidebar />
-
       <Box
         sx={{
           padding: 3,

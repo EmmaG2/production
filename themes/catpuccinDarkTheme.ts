@@ -1,6 +1,6 @@
-import { createTheme } from "@mui/material";
+import { createTheme, responsiveFontSizes } from "@mui/material";
 
-const theme = createTheme({
+let theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
@@ -19,11 +19,6 @@ const theme = createTheme({
       default: "#24273a",
     },
   },
-  typography: {
-    h1: {
-      fontSize: "2.5rem",
-    },
-  },
   components: {
     MuiAppBar: {
       styleOverrides: {
@@ -35,5 +30,7 @@ const theme = createTheme({
     },
   },
 });
+
+theme = responsiveFontSizes(theme);
 
 export default theme;
