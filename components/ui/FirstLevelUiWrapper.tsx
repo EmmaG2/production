@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
-import { selectUiState } from "../../redux/reducers";
+import { selectUiState } from "../../redux/reducers/ui";
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
@@ -11,10 +11,13 @@ interface Props {
 }
 
 export const FirstLevelUiWrapper: FC<Props> = ({ children }) => {
-  const { theme } = useSelector(selectUiState);
+  const { ui } = useSelector(selectUiState);
+  const { theme: isLigthTheme } = ui;
 
   return (
-    <ThemeProvider theme={theme ? catpuccinLigthTheme : catpuccinDarkTheme}>
+    <ThemeProvider
+      theme={isLigthTheme ? catpuccinLigthTheme : catpuccinDarkTheme}
+    >
       <CssBaseline />
       {children}
     </ThemeProvider>

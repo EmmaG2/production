@@ -15,12 +15,13 @@ import {
   Divider,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUiState, toggleSidebar } from "../../redux/reducers";
+import { selectUiState, toggleSidebar } from "../../redux/reducers/ui";
 
 const menuItems = ["Inbox", "Starred", "Send Email", "Drafts"];
 
 export const Sidebar = () => {
-  const { sidebar } = useSelector(selectUiState);
+  const { ui } = useSelector(selectUiState);
+  const { sidebar } = ui;
   const dispatch = useDispatch();
 
   return (

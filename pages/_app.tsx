@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
-import { FirstLevelUiWrapper } from "../components/ui";
+import { FirstLevelUiWrapper, ReduxPersistWrapper } from "../components/ui";
 
 import { wrapper } from "../redux";
 
@@ -9,9 +9,11 @@ function App({ Component, ...rest }: AppProps) {
 
   return (
     <Provider store={store}>
-      <FirstLevelUiWrapper>
-        <Component {...props.pageProps} />
-      </FirstLevelUiWrapper>
+      <ReduxPersistWrapper rest={rest}>
+        <FirstLevelUiWrapper>
+          <Component {...props.pageProps} />
+        </FirstLevelUiWrapper>
+      </ReduxPersistWrapper>
     </Provider>
   );
 }

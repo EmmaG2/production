@@ -1,8 +1,7 @@
 // export const { toggleTheme } = uiSlice.actions;
 import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
-import { AppState } from "../store";
-// import { HYDRATE } from "next-redux-wrapper";
+import { AppState } from "../../store";
 
 // Type for our state
 export interface uiSate {
