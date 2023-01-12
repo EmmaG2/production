@@ -1,18 +1,57 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { HYDRATE } from "next-redux-wrapper";
+import { Entry } from "../../../interfaces";
+import { AppState } from "../../store";
+
+import { v4 as uuidv4 } from "uuid";
 
 interface entriesState {
-  hola?: string;
+  entries: Entry[]; // todo: falta el tipo de dato
 }
 
-const initialState: entriesState = {};
+const date = new Date();
+const [month, day, year] = [
+  date.getMonth(),
+  date.getDate(),
+  date.getFullYear(),
+];
+const [hour, minutes, seconds] = [
+  date.getHours(),
+  date.getMinutes(),
+  date.getSeconds(),
+];
+
+const initialState: entriesState = {
+  entries: [
+    {
+      _id: uuidv4(),
+      createdAt: `${year}/${month}/${day} - ${hour}:${minutes}:${seconds}`,
+      description: "lorem ipsum dolor sit asimet",
+      status: "pending",
+    },
+    {
+      _id: uuidv4(),
+      createdAt: `${year}/${month}/${day} - ${hour}:${minutes}:${seconds}`,
+      description: "lorem ipsum ",
+      status: "in-progress",
+    },
+    {
+      _id: uuidv4(),
+      createdAt: `${year}/${month}/${day} - ${hour}:${minutes}:${seconds}`,
+      description: "lorem ipsum ",
+      status: "finished",
+    },
+  ],
+};
 
 export const entriesSlice = createSlice({
   name: "entries",
   initialState,
   reducers: {
-    reducerName: (state, action) => {},
+    addEntry: (state, action) => {},
+    deleteEntry: (state, action) => {},
+    updateEntry: (state, action) => {},
   },
   extraReducers: (buider) => {
     buider.addCase(HYDRATE, (state, action) => {
@@ -24,4 +63,5 @@ export const entriesSlice = createSlice({
   },
 });
 
-export const { reducerName } = entriesSlice.actions;
+export const { addEntry: reducerName } = entriesSlice.actions;
+export const selectEntriesState = (state: AppState) => state.entries;

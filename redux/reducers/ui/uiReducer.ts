@@ -39,4 +39,4 @@ export const uiSlice = createSlice({
 
 export const { toggleUiState, toggleSidebar } = uiSlice.actions;
 
-export const selectUiState = (state: AppState) => state.ui;
+export const selectUiState = (state: AppState) => state.ui.ui;

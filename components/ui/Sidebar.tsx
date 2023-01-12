@@ -20,8 +20,7 @@ import { selectUiState, toggleSidebar } from "../../redux/reducers/ui";
 const menuItems = ["Inbox", "Starred", "Send Email", "Drafts"];
 
 export const Sidebar = () => {
-  const { ui } = useSelector(selectUiState);
-  const { sidebar } = ui;
+  const { sidebar } = useSelector(selectUiState);
   const dispatch = useDispatch();
 
   return (

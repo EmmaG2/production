@@ -6,13 +6,15 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import Button from "@mui/material/Button";
-import { useDispatch } from "react-redux";
-import { toggleUiState } from "../redux/reducers/ui";
+import { Box } from "@mui/system";
+import { useDispatch, useSelector } from "react-redux";
 
 import { MainLayout } from "../layout";
+import { selectEntriesState } from "../redux/reducers/entries";
+import { contentRenderer } from "../utils";
 
 export default function Home() {
+  const { entries } = useSelector(selectEntriesState);
   const dispatch = useDispatch();
 
   return (
@@ -26,10 +28,25 @@ export default function Home() {
           >
             <CardHeader title="Pendientes" />
             <Divider />
-            <CardContent>
-              {/* Agregar una nueva entrada */}
-              {/* Listado de las entradas */}
-            </CardContent>
+            <Box
+              sx={{
+                m: 2,
+                p: 2,
+              }}
+            >
+              {/* {entries.map((entrie) =>
+                entrie.status === "pending" ? (
+                  <Card key={entrie._id}>
+                    <CardHeader title={entrie.status} />
+                    <CardContent>
+                      <Typography>{entrie.description}</Typography>
+                      <Typography>{entrie.createdAt}</Typography>
+                    </CardContent>
+                  </Card>
+                ) : null
+              )} */}
+              {contentRenderer(true)}
+            </Box>
           </Card>
         </Grid>
         <Grid item xs={12} sm={4}>
@@ -40,6 +57,7 @@ export default function Home() {
           >
             <CardHeader title="En Progreso" />
             <Divider />
+            <CardContent>{contentRenderer(false)}</CardContent>
           </Card>
         </Grid>
         <Grid item xs={12} sm={4}>
