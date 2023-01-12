@@ -7,12 +7,14 @@ import { AppState } from "../../store";
 export interface uiSate {
   theme: boolean;
   sidebar: boolean;
+  isAdding: boolean;
 }
 
 // Initial state
 const initialState: uiSate = {
   theme: true,
   sidebar: false,
+  isAdding: false,
 };
 
 // Actual Slice
@@ -26,6 +28,9 @@ export const uiSlice = createSlice({
     toggleSidebar(state) {
       state.sidebar = !state.sidebar;
     },
+    toggleIsAdding(state) {
+      state.isAdding = !state.isAdding;
+    },
   },
   extraReducers: (buider) => {
     buider.addCase(HYDRATE, (state, action) => {
@@ -37,6 +42,6 @@ export const uiSlice = createSlice({
   },
 });
 
-export const { toggleUiState, toggleSidebar } = uiSlice.actions;
+export const { toggleUiState, toggleSidebar, toggleIsAdding } = uiSlice.actions;
 
-export const selectUiState = (state: AppState) => state.ui.ui;
+export const selectUiState = (state: AppState) => state.appliactionState.ui;

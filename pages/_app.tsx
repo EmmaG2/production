@@ -1,7 +1,6 @@
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { FirstLevelUiWrapper, ReduxPersistWrapper } from "../components/ui";
-
 import { wrapper } from "../redux";
 
 function App({ Component, ...rest }: AppProps) {
