@@ -16,8 +16,7 @@ import {
 } from "../../redux/reducers/ui";
 
 export const Navbar = () => {
-  const { ui } = useSelector(selectUiState);
-  const { theme } = ui;
+  const { theme } = useSelector(selectUiState);
   const dispatch = useDispatch();
 
   return (

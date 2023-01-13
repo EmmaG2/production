@@ -10,13 +10,14 @@ import { combineReducers } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 
 const persistConfig = {
-  key: "uiState",
+  key: "appPersistedState",
   storage,
-  whitelist: [`${uiSlice.name}`],
+  whitelist: [`${uiSlice.name}`, `${entriesSlice.name}`],
 };
 
 const rootReducers = combineReducers({
   [uiSlice.name]: uiSlice.reducer,
+  [entriesSlice.name]: entriesSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);
@@ -24,8 +25,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducers);
 const makeStore = () =>
   configureStore({
     reducer: {
-      [uiSlice.name]: persistedReducer,
-      [entriesSlice.name]: entriesSlice.reducer,
+      appliactionState: persistedReducer,
     },
     middleware: [thunk],
     devTools: true,

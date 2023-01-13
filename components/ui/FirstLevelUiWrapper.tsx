@@ -11,8 +11,7 @@ interface Props {
 }
 
 export const FirstLevelUiWrapper: FC<Props> = ({ children }) => {
-  const { ui } = useSelector(selectUiState);
-  const { theme: isLigthTheme } = ui;
+  const { theme: isLigthTheme } = useSelector(selectUiState);
 
   return (
     <ThemeProvider

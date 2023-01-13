@@ -1,21 +1,21 @@
-// export const { toggleTheme } = uiSlice.actions;
 import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import { AppState } from "../../store";
 
-// Type for our state
 export interface uiSate {
   theme: boolean;
   sidebar: boolean;
+  isAdding: boolean;
+  isDragging: boolean;
 }
 
-// Initial state
 const initialState: uiSate = {
   theme: true,
   sidebar: false,
+  isAdding: false,
+  isDragging: false,
 };
 
-// Actual Slice
 export const uiSlice = createSlice({
   name: "ui",
   initialState,
@@ -25,6 +25,12 @@ export const uiSlice = createSlice({
     },
     toggleSidebar(state) {
       state.sidebar = !state.sidebar;
+    },
+    toggleIsAdding(state) {
+      state.isAdding = !state.isAdding;
+    },
+    toggleIsDragging(state) {
+      state.isDragging = !state.isDragging;
     },
   },
   extraReducers: (buider) => {
@@ -37,6 +43,11 @@ export const uiSlice = createSlice({
   },
 });
 
-export const { toggleUiState, toggleSidebar } = uiSlice.actions;
+export const {
+  toggleUiState,
+  toggleSidebar,
+  toggleIsAdding,
+  toggleIsDragging,
+} = uiSlice.actions;
 
-export const selectUiState = (state: AppState) => state.ui;
+export const selectUiState = (state: AppState) => state.appliactionState.ui;
