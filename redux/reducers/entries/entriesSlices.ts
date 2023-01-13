@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { HYDRATE } from "next-redux-wrapper";
-import { Entry } from "../../../interfaces";
+import { EntriesState, Entry } from "../../../interfaces";
 import { AppState } from "../../store";
 
 import { v4 as uuidv4 } from "uuid";
@@ -53,8 +53,13 @@ export const entriesSlice = createSlice({
         status: "pending",
       });
     },
-    deleteEntry: (state, action) => {},
-    updateEntry: (state, action) => {},
+    updateEntry: (state, action: PayloadAction<Entry>) => {
+      const entryIndex =
+        state.entries.findIndex((e) => e._id === action.payload._id) || 0;
+      if (entryIndex >= 0) {
+        state.entries[entryIndex].status = action.payload.status;
+      }
+    },
   },
   extraReducers: (buider) => {
     buider.addCase(HYDRATE, (state, action) => {
@@ -66,6 +71,6 @@ export const entriesSlice = createSlice({
   },
 });
 
-export const { addEntry, deleteEntry, updateEntry } = entriesSlice.actions;
+export const { addEntry, updateEntry } = entriesSlice.actions;
 export const selectEntriesState = (state: AppState) =>
   state.appliactionState.entries;
